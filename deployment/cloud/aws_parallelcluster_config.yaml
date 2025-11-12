@@ -1,0 +1,45 @@
+# AWS-CQ-001: IMPORTANT: This configuration contains placeholder values.
+# You MUST replace all 'your-s3-bucket', 'subnet-xxxxxxxxxxxxxxxxx', 'your-ec2-keypair',
+# and 'fs-zzzzzzzzzzzzzzzzz' with your actual AWS resource IDs and names.
+Region: us-east-1 # Specify your AWS region
+Image:
+  Os: alinux2 # Or centos7, ubuntu2004, etc.
+
+HeadNode:
+  InstanceType: c5.large # Or a suitable instance type
+  Networking:
+    SubnetId: subnet-xxxxxxxxxxxxxxxxx # Replace with your HeadNode subnet ID
+  Ssh:
+    KeyName: your-ec2-keypair # Replace with your EC2 key pair name
+  CustomActions:
+    OnNodeStart:
+      - Script: s3://your-s3-bucket/on_node_start.sh # Replace with your S3 bucket and script path
+        Args: []
+
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: compute-nodes
+          InstanceType: c5.xlarge # Or a suitable instance type for compute tasks
+          MinCount: 0
+          MaxCount: 10
+      Networking:
+        SubnetIds:
+          - subnet-yyyyyyyyyyyyyyyyy # Replace with your ComputeNode subnet ID
+      CustomActions:
+        OnNodeStart:
+          - Script: s3://your-s3-bucket/on_node_start.sh # Replace with your S3 bucket and script path
+            Args: []
+
+SharedStorage:
+  - MountDir: /shared
+    Name: efs-shared
+    StorageType: Efs
+    FileSystemId: fs-zzzzzzzzzzzzzzzzz # Replace with your EFS File System ID
+
+# AWS-SEC-001: Removed commented-out 'Tags' example for sensitive information.
+# For production, sensitive information should be passed securely, e.g., via AWS Secrets Manager
+# integrated with instance profiles, or by configuring environment variables directly within
+# your Docker Compose files or application code, pulling from secure sources.

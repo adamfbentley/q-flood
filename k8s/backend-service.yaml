@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: flood-forecasting
+    component: backend
+spec:
+  selector:
+    app: flood-forecasting
+    component: backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP # Use LoadBalancer for external access

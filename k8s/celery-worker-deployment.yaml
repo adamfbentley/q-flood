@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker-deployment
+  labels:
+    app: flood-forecasting
+    component: celery-worker
+spec:
+  replicas: 1 # Scale as needed
+  selector:
+    matchLabels:
+      app: flood-forecasting
+      component: celery-worker
+  template:
+    metadata:
+      labels:
+        app: flood-forecasting
+        component: celery-worker
+    spec:
+      containers:
+        - name: celery-worker
+          image: your-registry/flood-forecasting-backend:latest # Replace with your actual image reference (should be the same as backend)
+          command: ["celery"]
+          args: ["-A", "app.core.celery_app", "worker", "--loglevel=info", "--pool=fork"] # Use fork for production
+          envFrom:
+            - configMapRef:
+                name: flood-forecasting-config
+            - secretRef:
+                name: flood-forecasting-secrets
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+            requests:
+              memory: "512Mi"
+              cpu: "500m"

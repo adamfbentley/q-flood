@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: flood-forecasting
+    component: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flood-forecasting
+      component: redis
+  template:
+    metadata:
+      labels:
+        app: flood-forecasting
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-storage
+              mountPath: /data
+      volumes:
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: redis-pv-claim
