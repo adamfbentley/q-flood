@@ -4,9 +4,11 @@
 [![Qiskit](https://img.shields.io/badge/Qiskit-1.0+-purple.svg)](https://qiskit.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-A production-grade flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
+A flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
+
+> **Note**: This is an experimental project demonstrating quantum computing integration in scientific applications. The quantum solver operates at demonstration scale and is not intended for production flood forecasting.
 
 ## 🌟 Key Features
 
