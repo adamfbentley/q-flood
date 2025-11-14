@@ -4,7 +4,7 @@
 [![Qiskit](https://img.shields.io/badge/Qiskit-1.0+-purple.svg)](https://qiskit.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](./LICENSE)
 
 A flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
 
@@ -15,10 +15,10 @@ A flood modelling application that integrates **quantum computing algorithms** w
 ## 🌟 Key Features
 
 ### Quantum Computing Implementation
-- **Qiskit HHL Algorithm**: Quantum linear solver for flood modelling equations
-- **3-Qubit Quantum Circuits**: Custom quantum gate operations (Hadamard, CNOT, rotation gates)
+- **Qiskit HHL Algorithm**: Demonstration-scale quantum linear solver (2x2 matrices)
+- **4-Qubit Quantum Circuits**: Custom quantum gate operations (Hadamard, CNOT, controlled rotations, QFT)
 - **AerSimulator Integration**: Quantum circuit simulation with statevector method
-- **Hybrid Architecture**: Intelligent quantum-classical fallback system for production reliability
+- **Hybrid Architecture**: Automatic fallback to classical solvers for reliability and scalability
 
 ### Backend & Infrastructure
 - **FastAPI REST API**: Modern async Python web framework with OpenAPI documentation
@@ -48,10 +48,10 @@ A flood modelling application that integrates **quantum computing algorithms** w
                 └──> Celery Workers + Redis
                      │
                      ├──> Quantum Solver Service (Qiskit HHL)
-                     │    └──> AerSimulator (3-qubit circuits)
+                     │    └──> AerSimulator (4-qubit circuits, 2x2 matrices)
                      │
                      └──> Classical Solver Service (NumPy/SciPy)
-                          └──> Automatic fallback on quantum failure
+                          └──> Automatic fallback for scalability
 ```
 
 ## 🚀 Quick Start
@@ -171,21 +171,23 @@ if status['status'] == 'COMPLETED':
 The quantum solver implements the **Harrow-Hassidim-Lloyd (HHL) algorithm** for solving linear systems Ax = b, which is fundamental to flood modelling differential equations.
 
 **Quantum Circuit Structure:**
-- 3 qubits (1 ancilla, 2 for system state)
-- Hadamard gates for superposition
-- Controlled rotation gates for eigenvalue inversion
-- CNOT gates for entanglement
-- Measurement and classical post-processing
+- 4 qubits (1 ancilla, 2 for eigenvalue estimation, 1 for state register)
+- Quantum Phase Estimation (QPE) for eigenvalue extraction
+- Controlled Y-rotations for eigenvalue inversion (1/λ)
+- Inverse QPE to uncompute phase estimation
+- Post-selection on ancilla qubit measurement
 
-**Advantages:**
-- Exponential speedup for specific problem classes
-- Efficient for large sparse matrices
-- Demonstrates quantum computing in real applications
+**Current Implementation:**
+- Operates on 2x2 linear systems (demonstration scale)
+- Uses simplified Hamiltonian simulation via controlled-phase gates
+- Executes on ideal AerSimulator (no noise modeling)
+- Theoretical exponential speedup requires much larger problem sizes (N > 1000)
 
-**Limitations (Acknowledged):**
-- Current implementation is demonstration-scale
-- NISQ-era quantum computers have noise constraints
-- Hybrid fallback ensures production reliability
+**Practical Limitations:**
+- Current quantum hardware insufficient for production flood modeling
+- 2x2 matrices: classical solver is faster (quantum overhead dominates)
+- Real flood models require ~10^6 x 10^6 matrices (beyond current quantum capability)
+- Hybrid architecture ensures usable results via classical fallback today
 
 ## 🛠️ Technology Stack
 
@@ -279,14 +281,16 @@ Contributions are welcome! Please feel free to submit a Pull Request. Areas of i
 
 ## 📚 Research & Publications
 
-This project demonstrates practical quantum computing integration in scientific applications. Related research includes:
+This project demonstrates quantum computing implementation in a scientific software context. The HHL algorithm is implemented at demonstration scale following:
 
-- **HHL Algorithm**: Harrow, A. W., Hassidim, A., & Lloyd, S. (2009). "Quantum algorithm for linear systems of equations." Physical Review Letters.
-- **NISQ Applications**: Preskill, J. (2018). "Quantum Computing in the NISQ era and beyond." Quantum.
+- **HHL Algorithm**: Harrow, A. W., Hassidim, A., & Lloyd, S. (2009). "Quantum algorithm for linear systems of equations." Physical Review Letters, 103(15), 150502.
+- **NISQ Era**: Preskill, J. (2018). "Quantum Computing in the NISQ era and beyond." Quantum, 2, 79.
+
+**Note**: This implementation is for educational and demonstration purposes. Production quantum advantage for flood modeling requires quantum computers with 50+ qubits and error correction, which remain under development.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE) file for details. This license ensures the code remains open source even when used as a network service.
 
 ## 👤 Author
 
@@ -303,4 +307,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Note**: This is a research and demonstration project. The quantum solver is designed for educational purposes and proof-of-concept. For production flood forecasting, the hybrid fallback ensures reliable results using classical methods when needed.
+## ⚠️ Important Disclaimers
+
+**Quantum Computing Scope**: 
+- The HHL implementation operates on 2x2 matrices for demonstration purposes
+- Current quantum hardware (NISQ era) cannot solve production-scale flood modeling problems
+- Classical solvers are faster and more practical for real flood forecasting today
+- This project demonstrates quantum algorithm integration, not production quantum advantage
+
+**Educational Purpose**: 
+- Built to explore quantum computing in scientific software engineering
+- Suitable for learning quantum algorithms and hybrid system architectures
+- Not validated for operational flood forecasting or disaster response
+- The hybrid fallback architecture ensures usable results via classical computation
