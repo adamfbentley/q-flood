@@ -1,25 +1,38 @@
 import logging
 import io
 import json
-import rasterio
-from rasterio.errors import RasterioIOError
-from shapely.geometry import box
-import fiona
-import geopandas as gpd
 from jsonschema import validate, ValidationError
 from datetime import datetime
 import numpy as np
+
+# Optional geospatial dependencies (not required for basic API functionality)
+try:
+    import rasterio
+    from rasterio.errors import RasterioIOError
+    from shapely.geometry import box
+    import fiona
+    import geopandas as gpd
+    GEOSPATIAL_AVAILABLE = True
+except ImportError:
+    GEOSPATIAL_AVAILABLE = False
+    logger = logging.getLogger(__name__)
+    logger.warning("Geospatial libraries not available. File upload features will be limited.")
 
 logger = logging.getLogger(__name__)
 
 class GeospatialProcessorService:
     def __init__(self):
-        pass
+        if not GEOSPATIAL_AVAILABLE:
+            logger.warning("GeospatialProcessorService initialized without geospatial libraries")
 
     def validate_geospatial_data(self, file_content: bytes, file_type: str, job_id: str) -> bool:
         """
         Performs comprehensive validation of geospatial data based on its inferred MIME type.
         """
+        if not GEOSPATIAL_AVAILABLE:
+            logger.error(f"[{job_id}] Geospatial libraries not available. Cannot validate {file_type}")
+            raise ImportError("Geospatial processing requires rasterio, fiona, geopandas, and shapely")
+        
         logger.info(f"[{job_id}] Starting validation for file type: {file_type}")
 
         if file_type in ("image/tiff", "application/geotiff"): # GeoTIFF

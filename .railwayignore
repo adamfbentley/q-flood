@@ -1,0 +1,16 @@
+# Don't upload these to Railway
+frontend/
+tests/
+*.md
+.git/
+.gitignore
+docker-compose.yml
+Dockerfile
+.dockerignore
+deployment/
+k8s/
+hpc/
+*.db
+__pycache__/
+*.pyc
+.env.example
