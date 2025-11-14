@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, DateTime, Float, ForeignKey
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-from app.core.database import Base
+from backend.core.database import Base
 import uuid
 
 class PerformanceLog(Base):

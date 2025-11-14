@@ -3,9 +3,9 @@ import os
 import uuid
 from fastapi import APIRouter, Depends, UploadFile, File, HTTPException, status
 from minio.error import S3Error
-from app.core.object_storage import MinioClient
-from app.dependencies import get_api_key
-from app.models.api_key import APIKey
+from backend.core.object_storage import MinioClient
+from backend.dependencies import get_api_key
+from backend.models.api_key import APIKey
 
 router = APIRouter(tags=["Data Ingestion"])
 logger = logging.getLogger(__name__)

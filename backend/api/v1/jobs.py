@@ -3,15 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query, Response
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from app.core.database import get_db
-from app.dependencies import get_api_key
-from app.models.api_key import APIKey
-from app.models.job import Job, JobStatus, SolverType
-from app.schemas.job import JobCreate, JobResponse, JobStatusEnum
+from backend.core.database import get_db
+from backend.dependencies import get_api_key
+from backend.models.api_key import APIKey
+from backend.models.job import Job, JobStatus, SolverType
+from backend.schemas.job import JobCreate, JobResponse, JobStatusEnum
 import uuid
-from app.tasks.geospatial_tasks import validate_and_preprocess_task # New: Import geospatial task
-from app.tasks.quantum_tasks import quantum_solve_task
-from app.core.object_storage import MinioClient
+from backend.tasks.geospatial_tasks import validate_and_preprocess_task # New: Import geospatial task
+from backend.tasks.quantum_tasks import quantum_solve_task
+from backend.core.object_storage import MinioClient
 import os
 
 router = APIRouter(tags=["Job Management"])

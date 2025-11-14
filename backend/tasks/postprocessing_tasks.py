@@ -1,9 +1,9 @@
 import logging
 from celery import shared_task
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.models.job import Job, JobStatus
-from app.services.gis_postprocessor import GISPostProcessorService
+from backend.core.database import SessionLocal
+from backend.models.job import Job, JobStatus
+from backend.services.gis_postprocessor import GISPostProcessorService
 
 logger = logging.getLogger(__name__)
 

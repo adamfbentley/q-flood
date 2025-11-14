@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 try:
-    from app.core.config import settings
+    from backend.core.config import settings
     SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -39,9 +39,9 @@ def init_db():
     
     try:
         # Import all models here to ensure they are registered with Base
-        from app.models.api_key import APIKey # noqa
-        from app.models.job import Job # noqa
-        from app.models.performance_log import PerformanceLog # New: Import PerformanceLog # noqa
+        from backend.models.api_key import APIKey # noqa
+        from backend.models.job import Job # noqa
+        from backend.models.performance_log import PerformanceLog # New: Import PerformanceLog # noqa
         Base.metadata.create_all(bind=engine)
     except Exception as e:
         logger.error(f"Failed to initialize database: {e}")

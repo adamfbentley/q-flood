@@ -2,9 +2,9 @@ import logging
 from fastapi import Depends, HTTPException, status, Security
 from fastapi.security import APIKeyHeader
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.core.security import verify_api_key
-from app.models.api_key import APIKey
+from backend.core.database import SessionLocal
+from backend.core.security import verify_api_key
+from backend.models.api_key import APIKey
 
 logger = logging.getLogger(__name__)
 

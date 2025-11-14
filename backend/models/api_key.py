@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Boolean, DateTime
 from sqlalchemy.sql import func
-from app.core.database import Base
+from backend.core.database import Base
 import uuid
 
 class APIKey(Base):

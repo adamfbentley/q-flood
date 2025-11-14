@@ -1,5 +1,5 @@
 from celery import Celery
-from app.core.config import settings
+from backend.core.config import settings
 
 celery_app = Celery(
     "flood_forecasting",

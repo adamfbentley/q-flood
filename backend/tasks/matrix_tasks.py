@@ -1,11 +1,11 @@
 import logging
 from celery import shared_task
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.models.job import Job, JobStatus, SolverType
-from app.services.matrix_generator import MatrixGeneratorService
-from app.tasks.solver_tasks import classical_solve_task # Import the classical solver task
-from app.tasks.quantum_tasks import quantum_solve_task # Import the quantum solver task
+from backend.core.database import SessionLocal
+from backend.models.job import Job, JobStatus, SolverType
+from backend.services.matrix_generator import MatrixGeneratorService
+from backend.tasks.solver_tasks import classical_solve_task # Import the classical solver task
+from backend.tasks.quantum_tasks import quantum_solve_task # Import the quantum solver task
 
 logger = logging.getLogger(__name__)
 

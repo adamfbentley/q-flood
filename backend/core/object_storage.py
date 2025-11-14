@@ -1,7 +1,7 @@
 import logging
 from minio import Minio
 from minio.error import S3Error
-from app.core.config import settings
+from backend.core.config import settings
 import io
 
 logger = logging.getLogger(__name__)

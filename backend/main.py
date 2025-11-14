@@ -1,9 +1,9 @@
 import logging
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.core.database import init_db
-from app.api.v1 import jobs, ingestion, admin
-from app.core.celery_app import celery_app # Import celery_app (required for Celery to discover tasks)
+from backend.core.database import init_db
+from backend.api.v1 import jobs, ingestion, admin
+from backend.core.celery_app import celery_app # Import celery_app (required for Celery to discover tasks)
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

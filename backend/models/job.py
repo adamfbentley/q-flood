@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, DateTime, Enum, ForeignKey, JSON
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, Mapped
 from typing import List
-from app.core.database import Base
+from backend.core.database import Base
 import uuid
 
 class JobStatus(str, enum.Enum):

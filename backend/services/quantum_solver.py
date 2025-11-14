@@ -1,7 +1,7 @@
 import logging
 import numpy as np
 from scipy.sparse import load_npz
-from app.core.object_storage import MinioClient
+from backend.core.object_storage import MinioClient
 import io
 import uuid
 

@@ -1,12 +1,12 @@
 import logging
 from celery import shared_task
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.models.job import Job, JobStatus
-from app.models.performance_log import PerformanceLog # New: Import PerformanceLog model
-from app.schemas.performance_log import PerformanceLogCreate # New: Import PerformanceLogCreate schema
-from app.services.classical_solver import ClassicalSolverService
-from app.tasks.postprocessing_tasks import gis_postprocess_task # Import post-processing task
+from backend.core.database import SessionLocal
+from backend.models.job import Job, JobStatus
+from backend.models.performance_log import PerformanceLog # New: Import PerformanceLog model
+from backend.schemas.performance_log import PerformanceLogCreate # New: Import PerformanceLogCreate schema
+from backend.services.classical_solver import ClassicalSolverService
+from backend.tasks.postprocessing_tasks import gis_postprocess_task # Import post-processing task
 
 logger = logging.getLogger(__name__)
 

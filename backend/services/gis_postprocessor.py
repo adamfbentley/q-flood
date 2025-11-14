@@ -1,7 +1,7 @@
 import logging
 import numpy as np
 import geojson
-from app.core.object_storage import MinioClient
+from backend.core.object_storage import MinioClient
 import io
 import uuid
 from datetime import datetime

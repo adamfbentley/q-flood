@@ -1,8 +1,8 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional, Dict, Any, List
-from app.models.job import JobStatus, SolverType # Import enums from the model
-from app.schemas.performance_log import PerformanceLogResponse # New: Import PerformanceLogResponse
+from backend.models.job import JobStatus, SolverType # Import enums from the model
+from backend.schemas.performance_log import PerformanceLogResponse # New: Import PerformanceLogResponse
 
 # Re-export enums for schema usage
 JobStatusEnum = JobStatus

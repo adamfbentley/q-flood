@@ -1,11 +1,11 @@
 import logging
 from celery import shared_task
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.models.job import Job, JobStatus, SolverType
-from app.core.object_storage import MinioClient
-from app.services.geospatial_processor import GeospatialProcessorService
-from app.tasks.matrix_tasks import generate_matrix_task # Import the next task
+from backend.core.database import SessionLocal
+from backend.models.job import Job, JobStatus, SolverType
+from backend.core.object_storage import MinioClient
+from backend.services.geospatial_processor import GeospatialProcessorService
+from backend.tasks.matrix_tasks import generate_matrix_task # Import the next task
 import uuid
 import os
 

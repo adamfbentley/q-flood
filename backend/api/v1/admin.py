@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.core.database import get_db
-from app.core.security import generate_api_key, hash_api_key
-from app.models.api_key import APIKey
-from app.schemas.api_key import APIKeyCreate, APIKeyResponse
+from backend.core.database import get_db
+from backend.core.security import generate_api_key, hash_api_key
+from backend.models.api_key import APIKey
+from backend.schemas.api_key import APIKeyCreate, APIKeyResponse
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
