@@ -5,6 +5,7 @@ sqlalchemy==2.0.30
 pydantic==2.7.1
 pydantic-settings==2.2.1
 python-dotenv==1.0.1
+passlib[bcrypt]==1.7.4
 
 # Quantum computing
 qiskit==1.0.2
