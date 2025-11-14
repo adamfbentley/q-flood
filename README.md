@@ -8,6 +8,12 @@
 
 A flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
 
+## 🌐 Live Demo
+
+- **API Backend**: [https://web-production-2d620.up.railway.app](https://web-production-2d620.up.railway.app)
+- **API Documentation**: [https://web-production-2d620.up.railway.app/docs](https://web-production-2d620.up.railway.app/docs)
+- **Frontend**: Coming soon (deploying to Vercel)
+
 > **Project Context**: Built as an entry for the XPRIZE Quantum Applications competition, exploring practical applications of quantum computing in environmental science and disaster preparedness.
 
 > **Note**: This is an experimental project demonstrating quantum computing integration in scientific applications. The quantum solver operates at demonstration scale and is not intended for production flood forecasting.
