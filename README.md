@@ -10,9 +10,9 @@ A flood modelling application that integrates **quantum computing algorithms** w
 
 ## 🌐 Live Demo
 
+- **Frontend Application**: [https://q-flood.vercel.app](https://q-flood.vercel.app)
 - **API Backend**: [https://web-production-2d620.up.railway.app](https://web-production-2d620.up.railway.app)
 - **API Documentation**: [https://web-production-2d620.up.railway.app/docs](https://web-production-2d620.up.railway.app/docs)
-- **Frontend**: Coming soon (deploying to Vercel)
 
 > **Project Context**: Built as an entry for the XPRIZE Quantum Applications competition, exploring practical applications of quantum computing in environmental science and disaster preparedness.
 
