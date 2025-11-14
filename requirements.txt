@@ -17,6 +17,7 @@ scipy==1.13.0
 
 # Storage and tasks (optional - will gracefully fail if services unavailable)
 python-multipart==0.0.9
+celery==5.3.6
 
 # Testing
 pytest==8.2.0
