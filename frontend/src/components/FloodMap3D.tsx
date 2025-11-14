@@ -169,9 +169,8 @@ const FloodMap3D: React.FC<FloodMap3DProps> = ({ geojson, initialViewState }) =>
       >
         <Map
           mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v11" // Or a satellite style
+          mapStyle="mapbox://styles/mapbox/streets-v11"
           reuseMaps
-          preventStyleDiffing
         />
       </DeckGL>
       {tooltip.visible && (
