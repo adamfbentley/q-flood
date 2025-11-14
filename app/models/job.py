@@ -1,6 +1,5 @@
 import enum
-from sqlalchemy import Column, String, DateTime, Enum, ForeignKey
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import Column, String, DateTime, Enum, ForeignKey, JSON
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, Mapped
 from typing import List
@@ -31,7 +30,7 @@ class Job(Base):
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     status = Column(Enum(JobStatus), default=JobStatus.PENDING, nullable=False)
     solver_type = Column(Enum(SolverType), nullable=False)
-    parameters = Column(JSONB, nullable=True) # Input parameters for the solver
+    parameters = Column(JSON, nullable=True) # Input parameters for the solver
     input_data_path = Column(String, nullable=True) # Path to raw input data in object storage
     preprocessed_data_path = Column(String, nullable=True) # New: Path to pre-processed data in object storage
     matrix_path = Column(String, nullable=True) # Path to generated sparse matrix A in object storage
@@ -40,7 +39,7 @@ class Job(Base):
     geojson_path = Column(String, nullable=True) # New: Path to processed GeoJSON output
     pdf_report_path = Column(String, nullable=True) # New: Path to generated PDF report
     fallback_reason = Column(String, nullable=True) # New: Reason for fallback if applicable
-    latest_performance_metrics = Column(JSONB, nullable=True) # New: Summary of latest performance metrics
+    latest_performance_metrics = Column(JSON, nullable=True) # New: Summary of latest performance metrics
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now(), server_default=func.now())
 

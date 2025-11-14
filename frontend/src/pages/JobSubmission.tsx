@@ -110,7 +110,7 @@ const JobSubmission: React.FC = () => {
             onChange={(e) => setParameters(e.target.value)}
             rows={6}
             className="input-field font-mono"
-            placeholder="e.g., {\"grid_resolution\": 50, \"conversion_factor\": 0.2}"
+            placeholder={'e.g., {"grid_resolution": 50, "conversion_factor": 0.2}'}
           />
           <p className="text-xs text-gray-500 mt-1">Provide job-specific parameters in JSON format.</p>
         </div>
