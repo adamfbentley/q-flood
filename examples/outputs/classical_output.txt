@@ -1,0 +1,37 @@
+================================================================================
+Classical Flood Solver Example
+================================================================================
+
+🚀 Submitting classical solver job...
+   Method: NumPy/SciPy sparse matrix solvers
+   Grid: 50x50 (2500 cells)
+✅ Job submitted: 8a1f3c5e-9b2d-4e7a-a3f1-6c8d9e0b1234
+
+⏳ Waiting for job to complete...
+   Status: PENDING
+   Status: RUNNING
+   Status: RUNNING
+   Status: COMPLETED
+✅ Job complete!
+
+📊 Results:
+   Job ID: 8a1f3c5e-9b2d-4e7a-a3f1-6c8d9e0b1234
+   Solver: CLASSICAL
+   Status: COMPLETED
+
+⚡ Performance:
+   Solve time: 0.0843s
+   Matrix size: 2500
+   Non-zero elements: 9996
+
+📁 Generated Files:
+   ✓ Solution: solution.npz
+   ✓ GeoJSON: flood_map.geojson
+   ✓ PDF Report: report.pdf
+
+🌐 View flood map:
+   http://localhost:5173/jobs/8a1f3c5e-9b2d-4e7a-a3f1-6c8d9e0b1234
+
+================================================================================
+✨ Classical solver example complete!
+================================================================================

@@ -1,0 +1,52 @@
+================================================================================
+Quantum Flood Solver Example (HHL Algorithm)
+================================================================================
+
+🔮 Submitting quantum solver job...
+   Algorithm: HHL (Harrow-Hassidim-Lloyd)
+   Qubits: 4 (1 ancilla, 2 eigenvalue, 1 state)
+   Matrix size: 2x2 (extracted from 50x50 grid)
+✅ Job submitted: b4d2f7e9-1c3a-4b6e-8f2d-5a9c7e0d4321
+
+⏳ Waiting for quantum computation...
+   Status: PENDING
+   Status: RUNNING
+   Status: RUNNING
+   Status: RUNNING
+   Status: COMPLETED
+✅ Quantum computation complete!
+
+📊 Quantum Results:
+   Job ID: b4d2f7e9-1c3a-4b6e-8f2d-5a9c7e0d4321
+   Solver: QUANTUM
+   Status: COMPLETED
+
+🎯 Quantum Solution Generated:
+   Path: quantum_solution.npz
+
+🔬 Quantum Technical Details:
+   Algorithm: HHL (Quantum Linear System Solver)
+   Circuit Components:
+     • State Preparation (RY gate)
+     • Quantum Phase Estimation
+     • Controlled Rotations (eigenvalue inversion)
+     • Inverse QFT
+     • Post-selection on ancilla
+   Simulator: AerSimulator (statevector method)
+   Shots: 1000
+
+📁 Generated Files:
+   ✓ GeoJSON: flood_map.geojson
+   ✓ PDF Report: report.pdf
+
+🌐 View quantum flood map:
+   http://localhost:5173/jobs/b4d2f7e9-1c3a-4b6e-8f2d-5a9c7e0d4321
+
+💡 Note:
+   The quantum solver operates on a 2x2 submatrix for demonstration.
+   Real quantum advantage requires 20+ qubits for larger systems.
+   Current implementation: ~11% error vs classical solution.
+
+================================================================================
+✨ Quantum solver example complete!
+================================================================================
