@@ -53,11 +53,11 @@ dump.rdb
 # Celery
 celerybeat-schedule
 
-# Docker (keep local only - deployment doesn't use Docker)
+# Docker
 *.pid
-Dockerfile
-docker-compose.yml
-docker-compose.*.yml
+
+# Archived cloud deployment configs
+archive/
 
 # Test coverage
 .coverage

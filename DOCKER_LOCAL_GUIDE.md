@@ -1,21 +1,15 @@
 # Running Q-Flood Locally with Docker
 
-This guide explains how to run the **full Q-flood application** locally with all services (PostgreSQL, Redis, MinIO, Celery).
+This guide explains how to run the **complete Q-Flood application** locally with all services using Docker Compose.
 
-## 🎯 Two Deployment Modes:
+## 🎯 Why Docker?
 
-### 1. **Deployed Version** (Current - Railway/Vercel)
-- ✅ Frontend: https://q-flood.vercel.app
-- ✅ Backend: https://web-production-2d620.up.railway.app
-- ⚠️ Simplified (no Celery, Redis, MinIO)
-- 📝 For portfolio/CV demonstration
-
-### 2. **Local Full Version** (Docker - This Guide)
-- ✅ All services running (PostgreSQL, Redis, MinIO, Celery)
-- ✅ Full job processing with background tasks
-- ✅ File uploads and storage
-- ✅ Complete geospatial features
-- 🔧 For development and testing
+Q-Flood uses Docker for:
+- ✅ **Reproducibility**: Works the same on any system
+- ✅ **Complete Stack**: All 6 services (PostgreSQL, Redis, MinIO, Celery, Backend, Frontend)
+- ✅ **Easy Setup**: Single `docker-compose up` command
+- ✅ **Full Features**: Job processing, quantum/classical solvers, geospatial analysis
+- ✅ **Isolation**: No conflicts with your local Python/Node installations
 
 ---
 
@@ -274,4 +268,4 @@ Check the main README.md for general info, or:
 - Check service status: `docker-compose ps`
 - Restart everything: `docker-compose restart`
 
-Your deployed version at https://q-flood.vercel.app is separate and unaffected by local Docker setup!
+You now have Q-Flood running locally with all quantum and classical solvers operational!

@@ -8,15 +8,9 @@
 
 A flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
 
-## 🌐 Live Demo
+> **Project Context**: Inspired by the XPRIZE Quantum Applications competition, this project explores practical applications of quantum computing in environmental science and disaster preparedness.
 
-- **Frontend Application**: [https://q-flood.vercel.app](https://q-flood.vercel.app)
-- **API Backend**: [https://web-production-2d620.up.railway.app](https://web-production-2d620.up.railway.app)
-- **API Documentation**: [https://web-production-2d620.up.railway.app/docs](https://web-production-2d620.up.railway.app/docs)
-
-> **Project Context**: Built as an entry for the XPRIZE Quantum Applications competition, exploring practical applications of quantum computing in environmental science and disaster preparedness.
-
-> **Note**: This is an experimental project demonstrating quantum computing integration in scientific applications. The quantum solver operates at demonstration scale and is not intended for production flood forecasting.
+> **Note**: This is an experimental research project demonstrating quantum computing integration in scientific applications. The quantum solver operates at demonstration scale and is not intended for production flood forecasting. Q-Flood runs locally via Docker for full reproducibility.
 
 ## 🌟 Key Features
 
@@ -60,11 +54,13 @@ A flood modelling application that integrates **quantum computing algorithms** w
                           └──> Automatic fallback for scalability
 ```
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Local Docker)
+
+Q-Flood runs entirely in Docker for reproducibility and ease of setup.
 
 ### Prerequisites
 - Docker & Docker Compose
-- Python 3.11+
+- Python 3.11+ (for running examples)
 - Git
 
 ### Installation
@@ -75,25 +71,25 @@ git clone https://github.com/adamfbentley/q-flood.git
 cd q-flood
 ```
 
-2. **Set up environment variables**
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-3. **Start all services with Docker Compose**
+2. **Start all services with Docker Compose**
 ```bash
 docker-compose up -d
 ```
 
-4. **Initialize the database**
-```bash
-docker-compose exec api python -m app.db.init_db
-```
+This starts 6 services:
+- FastAPI Backend (port 8000)
+- React Frontend (port 5173)
+- PostgreSQL + PostGIS
+- Redis
+- MinIO Object Storage
+- Celery Worker
 
-5. **Access the API**
-- API Documentation: http://localhost:8000/docs
-- Health Check: http://localhost:8000/health
+3. **Access the application**
+- **Frontend**: http://localhost:5173
+- **API Documentation**: http://localhost:8000/docs
+- **Health Check**: http://localhost:8000/health
+
+See [`DOCKER_LOCAL_GUIDE.md`](DOCKER_LOCAL_GUIDE.md) for detailed setup instructions and troubleshooting.
 
 ## 📖 Usage
 
