@@ -17,6 +17,10 @@ class GISPostProcessorService:
         Converts the raw solver solution (e.g., pressure field) into flood depth.
         This conversion now incorporates basic hydrological parameters.
         """
+        # Handle None parameters
+        if parameters is None:
+            parameters = {}
+            
         conversion_factor = parameters.get("conversion_factor", 0.1)
         base_elevation = parameters.get("base_elevation", 0.0) # Example: uniform base elevation
         water_level_offset = parameters.get("water_level_offset", 0.0) # Example: constant water level increase
@@ -32,6 +36,10 @@ class GISPostProcessorService:
         Generates a GeoJSON FeatureCollection representing flood polygons.
         Each grid cell exceeding the flood threshold is represented by a square polygon.
         """
+        # Handle None parameters
+        if parameters is None:
+            parameters = {}
+            
         grid_resolution = parameters.get("grid_resolution", 50)
         threshold = parameters.get("flood_threshold", 0.05) # Example threshold for flood depth
 
@@ -81,6 +89,10 @@ class GISPostProcessorService:
         """
         Generates a text-based PDF report with more detailed statistics and a simulated map.
         """
+        # Handle None parameters
+        if parameters is None:
+            parameters = {}
+            
         grid_resolution = parameters.get("grid_resolution", 50)
         threshold = parameters.get("flood_threshold", 0.05)
 
@@ -161,14 +173,15 @@ Detailed flood extent data is available in the GeoJSON file.
         geojson_str = geojson.dumps(geojson_data, indent=2)
 
         geojson_object_name = f"jobs/{job_id}/results/flood_data_{uuid.uuid4()}.geojson"
-        self.minio_client.upload_file(geojson_object_name, geojson_str.encode('utf-8'), len(geojson_str.encode('utf-8')), "application/geo+json")
+        geojson_bytes = geojson_str.encode('utf-8')
+        self.minio_client.upload_file(geojson_object_name, io.BytesIO(geojson_bytes), len(geojson_bytes), "application/geo+json")
         logger.info(f"[{job_id}] GeoJSON data saved to {geojson_object_name}")
 
         # 4. Generate PDF report (as a text file for now)
         pdf_content = self._generate_pdf_report(job_id, parameters, geojson_object_name, solution_path, flood_depth)
 
         pdf_object_name = f"jobs/{job_id}/results/flood_report_{uuid.uuid4()}.pdf"
-        self.minio_client.upload_file(pdf_object_name, pdf_content, len(pdf_content), "application/pdf")
+        self.minio_client.upload_file(pdf_object_name, io.BytesIO(pdf_content), len(pdf_content), "application/pdf")
         logger.info(f"[{job_id}] PDF report saved to {pdf_object_name}")
 
         return geojson_object_name, pdf_object_name

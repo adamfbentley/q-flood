@@ -5,7 +5,8 @@ import { JobResponse, JobStatusEnum } from '../types/job';
 import { useApiKey } from '../context/ApiKeyContext';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import FloodMap3D from '../components/FloodMap3D'; // Import the new component
+import FloodMap3D from '../components/FloodMap3D'; // Import the 3D map component
+import SimpleFloodMap from '../components/SimpleFloodMap'; // Import the fallback component
 
 const JobDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -157,8 +158,12 @@ const JobDetail: React.FC = () => {
 
       {isJobCompleted && geojson_data && (
         <div className="mt-6 pt-4 border-t border-gray-200">
-          <h3 className="text-xl font-semibold mb-4 text-gray-800">3D Flood Map Visualization:</h3>
-          <FloodMap3D geojson={geojson_data} />
+          <h3 className="text-xl font-semibold mb-4 text-gray-800">Flood Map Visualization:</h3>
+          {import.meta.env.VITE_MAPBOX_ACCESS_TOKEN ? (
+            <FloodMap3D geojson={geojson_data} />
+          ) : (
+            <SimpleFloodMap geojson={geojson_data} />
+          )}
         </div>
       )}
 

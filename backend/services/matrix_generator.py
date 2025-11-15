@@ -68,6 +68,10 @@ class MatrixGeneratorService:
 
         grid_resolution_from_preprocessed = self._read_preprocessed_data_for_grid_resolution(preprocessed_data_path, job_id)
         
+        # Handle None parameters
+        if parameters is None:
+            parameters = {}
+        
         grid_resolution = parameters.get("grid_resolution", 50) # Default if not in parameters
 
         if grid_resolution_from_preprocessed is not None and grid_resolution_from_preprocessed > 0:

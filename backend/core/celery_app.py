@@ -14,6 +14,6 @@ celery_app.conf.update(
     accept_content=['json'],
     timezone='UTC',
     enable_utc=True,
-    # Autodiscover tasks in the 'app.tasks' package
-    include=['app.tasks.geospatial_tasks', 'app.tasks.matrix_tasks', 'app.tasks.solver_tasks', 'app.tasks.quantum_tasks', 'app.tasks.postprocessing_tasks'] # Added geospatial_tasks
+    # Autodiscover tasks in the 'backend.tasks' package
+    include=['backend.tasks.geospatial_tasks', 'backend.tasks.matrix_tasks', 'backend.tasks.solver_tasks', 'backend.tasks.quantum_tasks', 'backend.tasks.postprocessing_tasks']
 )

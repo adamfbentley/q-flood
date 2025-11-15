@@ -1,7 +1,7 @@
 import logging
 from fastapi import APIRouter, Depends, HTTPException, status, Query, Response
 from fastapi.responses import FileResponse
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List, Optional
 from backend.core.database import get_db
 from backend.dependencies import get_api_key
@@ -51,7 +51,7 @@ async def get_all_jobs(
 ):
     """Retrieves a list of all flood simulation jobs with pagination."""
     # Eager load performance logs for JobResponse schema
-    jobs = db.query(Job).options(relationship(Job.performance_logs)).offset(skip).limit(limit).all()
+    jobs = db.query(Job).options(joinedload(Job.performance_logs)).offset(skip).limit(limit).all()
     return jobs
 
 @router.get("/jobs/{job_id}", response_model=JobResponse)
@@ -62,7 +62,7 @@ async def get_job_details(
 ):
     """Retrieves detailed status and information for a specific job."""
     # Eager load performance logs for JobResponse schema
-    job = db.query(Job).options(relationship(Job.performance_logs)).filter(Job.id == job_id).first()
+    job = db.query(Job).options(joinedload(Job.performance_logs)).filter(Job.id == job_id).first()
     if not job:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Job not found")
     return job
