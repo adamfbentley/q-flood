@@ -97,7 +97,26 @@ docker-compose exec api python -m app.db.init_db
 
 ## 📖 Usage
 
-### Submit a Flood modelling Job
+### Practical Examples
+
+The `examples/` directory contains ready-to-run Python scripts demonstrating all solver types:
+
+- **`01_classical_solver.py`** - Fast NumPy/SciPy solver (~0.08s, production-ready)
+- **`02_quantum_solver.py`** - HHL quantum algorithm demonstration (4-qubit circuit)
+- **`03_hybrid_solver.py`** - Quantum-first with automatic classical fallback
+- **`04_compare_solvers.py`** - Side-by-side performance comparison
+
+```bash
+# Run any example
+python examples/01_classical_solver.py
+
+# Compare all solvers
+python examples/04_compare_solvers.py
+```
+
+See [`examples/README.md`](examples/README.md) for detailed usage instructions, expected outputs, and troubleshooting.
+
+### Submit a Flood Simulation Job (API)
 
 ```python
 import requests
@@ -107,38 +126,21 @@ API_KEY = "your-api-key"
 
 headers = {"X-API-Key": API_KEY}
 
-# Upload GeoJSON flood zone data
-flood_zone = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [[...]]
-            },
-            "properties": {
-                "name": "Wellington Harbor Basin",
-                "risk_level": "high"
-            }
-        }
-    ]
-}
-
+# Submit job with solver configuration
 response = requests.post(
-    f"{API_URL}/api/v1/jobs/submit",
+    f"{API_URL}/api/v1/solve",
     json={
-        "flood_zone": flood_zone,
-        "solver_type": "hybrid",  # "quantum", "classical", or "hybrid"
+        "solver_type": "CLASSICAL",  # or "QUANTUM", "HYBRID"
         "parameters": {
-            "time_horizon": 24,
-            "spatial_resolution": 100
+            "grid_resolution": 50,
+            "conversion_factor": 0.1,
+            "flood_threshold": 0.05
         }
     },
     headers=headers
 )
 
-job_id = response.json()["job_id"]
+job_id = response.json()["id"]
 print(f"Job submitted: {job_id}")
 ```
 
@@ -146,28 +148,25 @@ print(f"Job submitted: {job_id}")
 
 ```python
 status = requests.get(
-    f"{API_URL}/api/v1/jobs/{job_id}/status",
+    f"{API_URL}/api/v1/jobs/{job_id}",
     headers=headers
 ).json()
 
 print(f"Status: {status['status']}")
-# Possible states: PENDING, RUNNING, QUANTUM_RUNNING, 
-#                  QUANTUM_FAILED_FALLBACK_INITIATED,
-#                  FALLBACK_CLASSICAL_RUNNING, COMPLETED, FAILED
+# Possible states: PENDING, RUNNING, COMPLETED, FAILED
 ```
 
 ### Retrieve Results
 
 ```python
 if status['status'] == 'COMPLETED':
-    results = requests.get(
-        f"{API_URL}/api/v1/jobs/{job_id}/results",
-        headers=headers
-    ).json()
+    print(f"Solution: {status['solution_path']}")
+    print(f"GeoJSON: {status['geojson_path']}")
+    print(f"PDF Report: {status['pdf_report_path']}")
+    print(f"Metrics: {status['metrics']}")
     
-    print(f"Solution: {results['solution_url']}")
-    print(f"Solver used: {results['solver_type']}")
-    print(f"Performance: {results['metrics']}")
+    # View in frontend
+    print(f"http://localhost:5173/jobs/{job_id}")
 ```
 
 ## 🧪 Quantum Algorithm Details
