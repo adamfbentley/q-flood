@@ -1,4 +1,4 @@
-# Q-Flood: Quantum-Classical Hybrid Flood Forecasting Framework
+# Q-Flood: Hybrid Quantum-Classical Geospatial Solver Demo
 
 [![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Qiskit](https://img.shields.io/badge/Qiskit-1.0+-purple.svg)](https://qiskit.org/)
@@ -6,7 +6,7 @@
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](./LICENSE)
 
-A flood modelling application that integrates **quantum computing algorithms** with classical scientific computing for geospatial analysis. Features a hybrid quantum-classical solver architecture with automatic fallback for production reliability.
+A containerised geospatial solver demo that integrates **quantum computing algorithms** with classical scientific computing. Includes a hybrid quantum-classical solver path (demo-scale HHL) with automatic fallback to classical solvers.
 
 > **Project Context**: Inspired by the XPRIZE Quantum Applications competition, this project explores practical applications of quantum computing in environmental science and disaster preparedness.
 
