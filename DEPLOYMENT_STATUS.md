@@ -59,19 +59,7 @@ docker-compose down
 
 ---
 
-## Why Cloud Deployment Was Removed
 
-### Technical Reasons:
-1. **Geospatial Dependencies:** GDAL, GEOS, and PostGIS are extremely difficult to build on PaaS platforms like Railway
-2. **Memory Requirements:** Backend needs 2GB+ RAM, Celery needs 1.5GB+ RAM (expensive on cloud)
-3. **Service Dependencies:** Requires PostgreSQL+PostGIS, Redis, MinIO - complex cloud setup
-4. **Quantum Simulation:** Qiskit quantum circuits need significant compute resources
-
-### Strategic Reasons:
-1. **Honest Positioning:** Q-Flood is a research/demonstration project, not a production SaaS
-2. **Docker-First:** Better for portfolio to show "reproducible Docker setup" than "broken cloud deploy"
-3. **Cost:** Running 6 services in cloud is expensive for a portfolio project
-4. **Maintenance:** Local Docker is stable, cloud deployment requires constant fixes
 
 ### What Was Archived:
 - `railway.json` - Railway deployment config
@@ -87,39 +75,7 @@ All archived files moved to: `archive/` directory
 
 ---
 
-## Deployment Philosophy
 
-**Q-Flood is positioned as:**
-- ✅ **Docker-First Research Project** - Easy to run locally with single command
-- ✅ **Portfolio Demonstration** - Shows technical capability, not production ops
-- ✅ **Reproducible Science** - Anyone with Docker can run it exactly as designed
-
-**NOT positioned as:**
-- ❌ Production SaaS application
-- ❌ Cloud-native microservices
-- ❌ Enterprise-ready platform
-
----
-
-## For Recruiters/Portfolio Viewers
-
-**To experience Q-Flood:**
-
-1. **Prerequisites:** Docker Desktop installed
-2. **Clone:** `git clone https://github.com/adamfbentley/q-flood.git`
-3. **Run:** `docker-compose up -d` (starts all 6 services)
-4. **Access:** http://localhost:5173
-5. **Try Examples:** See `examples/` directory for runnable Python scripts
-
-**Expected Result:** All 3 solver types (CLASSICAL, QUANTUM, HYBRID) working in ~2 seconds per job
-
-**This demonstrates:**
-- Full-stack architecture (FastAPI, React, PostgreSQL, Redis, MinIO, Celery)
-- Quantum computing (real HHL algorithm with Qiskit)
-- Geospatial processing (PostGIS, GeoPandas)
-- Containerization and orchestration (Docker Compose)
-- API design and documentation (OpenAPI/Swagger)
-- Asynchronous task processing (Celery workers)
 
 ---
 
@@ -194,7 +150,7 @@ Stored in database, hashed with SHA-256. See `backend/core/security.py` for impl
 5. ✅ **Portfolio ready** - Easy demo, professional positioning
 
 **No action needed on deployment.** Focus on:
-- CV improvements
+
 - Other repository assessments
 - Documentation quality
 - Code examples and showcases
